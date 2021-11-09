@@ -1,0 +1,31 @@
+
+<!-- Remplacons les attributs de la balise li pour obtenir une directive par attibuts(ngclass)
+<li class="list-group-item"> -->
+
+    <li [ngClass]= "{'list-group-item': true, 
+                     'list-group-item-success': appareilStatus === 'allumé',
+                     'list-group-item-danger': appareilStatus === 'eteint' }"> 
+
+
+    <!-- utilise une directive structurelle pour afficher la couleur rouge sur les appareils eteints  
+    <div style="width: 20px; 
+         height: 20px; 
+         background-color: red;"
+         *ngIf="appareilStatus==='eteint'"
+    > </div>
+    -->
+
+    <h4 [ngStyle]="{color:getColor()}">
+        Appareil: {{ appareilName }} -- Statut : {{getStatus()}}
+    </h4>
+    <a [routerLink]="[id]">Détail</a>
+
+    <!-- <input type="text" class="form-control" [(ngModel)]="appareilName"> -->
+
+   <button class="btn-success"
+           (click)="onSwitchOn() " [disabled]="appareilStatus === 'allumé'">Allumer</button>
+
+    <button class="btn-danger"
+           (click)="onSwitchOff() " [disabled]="appareilStatus === 'eteint'">Eteindre</button>
+
+</li>
